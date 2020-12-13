@@ -65,4 +65,6 @@ def compareLists(list1, length1, list2, length2):
             return temp2.value
         temp2 = temp2.next
 
+    return "No matches"
+
 print(compareLists(listA, lengthA, listB, lengthB))

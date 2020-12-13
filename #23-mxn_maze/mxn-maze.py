@@ -27,11 +27,25 @@ def shortest_path(board, start, end):
   queue = deque([(start), 0])  # add starting location, and count = 0 to queue
 
   while queue:
+
+    # print('queue items:')
+    # for index in range(0, len(queue), 2):
+    #   coord = queue[index]
+    #   # print('coord: ', queue[index], queue[index+1])
+    #   if coord in visited:
+    #     print('inside1:', queue[0], queue[1])
+    #     queue.popleft()
+    #     queue.popleft()
+    #     print('inside2:', queue[0], queue[1])
+
+
     coords = queue.popleft()
     count = queue.popleft()
     # if at the end, return number of steps
     if coords == end:
       return count
+    if coords in visited:  # skips repeated values in queue.
+      continue
 
     visited.add(coords)
     neighbors = getWalkableNeighbors(board, coords[0], coords[1])
