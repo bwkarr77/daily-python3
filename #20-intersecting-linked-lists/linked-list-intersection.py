@@ -1,3 +1,5 @@
+## CREATE 2 LINKED LISTS
+
 class Node:
     def __init__(self, value):
         self.value = value;
@@ -35,27 +37,32 @@ B = [99, 1, 8, 10, 20]
 
 listA, lengthA = createLinkedList(A)
 listB, lengthB = createLinkedList(B)
-# print('lengths: ', lengthA, lengthB)
+
+## ^^ CREATED 2 LINKED LISTS ^^
 #####
+## vv FIND WHERE LINKED LISTS INTERSECT vv
 
 def compareLists(list1, length1, list2, length2):
+    # set the smaller list to iterate through first
     if length1 <= length2:
-        iterable = list1
-        notIterable = list2
+        firstIterate = list1
+        secondIterate = list2
     else:
-        iterable = list2
-        notIterable = list1
+        firstIterate = list2
+        secondIterate = list1
     
+    # input the smaller list into a set for comparison to
     visitedNodes = set()
-    temp1 = iterable.head
+    temp1 = firstIterate.head
     while(temp1):
-        visitedNodes.add(temp1)
+        visitedNodes.add(temp1.value)
         temp1 = temp1.next
 
-    temp2 = notIterable.head
+    # iterate through the larger list to find the first matching pair
+    temp2 = secondIterate.head
     while (temp2):
-        if temp2 in visitedNodes:
-            return temp2
+        if temp2.value in visitedNodes:
+            return temp2.value
         temp2 = temp2.next
 
-compareLists(listA, lengthA, listB, lengthB)
+print(compareLists(listA, lengthA, listB, lengthB))
